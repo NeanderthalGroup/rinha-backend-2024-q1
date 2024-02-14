@@ -52,7 +52,7 @@ async function handleClientTransactions(idCliente, valor, tipo, descricao) {
 
   const currentBalance = clientData.rows[0].limite - -balanceData.rows[0].valor;
 
-  if (tipo === "d" && valor >= currentBalance) {
+  if (tipo === "d" && valor > currentBalance) {
     throw new AppError("Não há limite para completar a transação", 422);
   }
 
