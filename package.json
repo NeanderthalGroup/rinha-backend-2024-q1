@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "compose": "docker stop rinha-backend-2024-q1-db-1 && docker rm rinha-backend-2024-q1-db-1 && docker-compose up --remove-orphans",
+    "dbconsole": "docker exec -it rinha-backend-2024-q1-db-1 sh"
+  },
   "dependencies": {
     "fastify": "^4.26.1"
   }
