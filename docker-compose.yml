@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   api01: &api
-    image: rinha-backend-2024-q1-api
+    image: ricardohenriquedev/rinha-de-backend-2024-q1:latest
     hostname: api01
     environment:
       - DB_HOSTNAME=db
@@ -14,11 +14,11 @@ services:
     depends_on:
       - db
     deploy:
-      # replicas: 1
+      replicas: 2
       resources:
         limits:
-          cpus: '0.3'
-          memory: '150MB'
+          cpus: '0.15'
+          memory: '75MB'
 
   api02:
     <<: *api
@@ -32,7 +32,7 @@ services:
       - API_PORT=3000
   
   nginx:
-    image: nginx:latest
+    image: nginx:alpine
     ports:
     - "9999:9999"
     volumes:

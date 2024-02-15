@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node src/index.js",
     "build": "docker build -t rinha-backend-2024-q1-api .",
-    "compose": "docker stop $(docker ps -a -q) && docker ps -a | awk '$2 ~ /^rinha/ {print $1}' | xargs -r docker rm -f && docker-compose up --remove-orphans",
+    "dockerhub": "docker tag rinha-backend-2024-q1-api ricardohenriquedev/rinha-de-backend-2024-q1 && docker push ricardohenriquedev/rinha-de-backend-2024-q1:latest",
+    "precompose": "docker stop $(docker ps -a -q) && docker ps -a | awk '$NF ~ /rinha-backend/ {print $1}' | xargs -r docker rm -f && docker images -a | awk '$1 ~ /rinha-backend/ {print $3}' | xargs -r docker rmi -f",
+    "compose": "docker-compose up --remove-orphans",
     "dbconsole": "docker exec -it rinha-backend-2024-q1-db-1 sh",
     "apiconsole": "docker exec -it rinha-backend-2024-q1-api01-1 sh",
     "psql": "docker exec -it rinha-backend-2024-q1-db-1 psql -U admin -d rinha"
