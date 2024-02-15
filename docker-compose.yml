@@ -44,7 +44,7 @@ services:
       resources:
         limits:
           cpus: '0.2'
-          memory: '50MB'
+          memory: '25MB'
 
   db:
     image: postgres:alpine
@@ -59,4 +59,4 @@ services:
       resources:
         limits:
           cpus: "0.7"
-          memory: "200MB"
+          memory: "225MB"
