@@ -9,6 +9,7 @@
     "psql": "docker exec -it rinha-backend-2024-q1-db-1 psql -U admin -d rinha"
   },
   "dependencies": {
-    "fastify": "^4.26.1"
+    "fastify": "^4.26.1",
+    "pg": "^8.11.3"
   }
 }
