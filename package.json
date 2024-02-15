@@ -4,8 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "compose": "docker stop rinha-backend-2024-q1-db-1 && docker rm rinha-backend-2024-q1-db-1 && docker-compose up --remove-orphans",
+    "start": "node src/index.js",
+    "build": "docker build -t rinha-backend-2024-q1-api .",
+    "compose": "docker stop $(docker ps -a -q) && docker ps -a | awk '$2 ~ /^rinha/ {print $1}' | xargs -r docker rm -f && docker-compose up --remove-orphans",
     "dbconsole": "docker exec -it rinha-backend-2024-q1-db-1 sh",
+    "apiconsole": "docker exec -it rinha-backend-2024-q1-api01-1 sh",
     "psql": "docker exec -it rinha-backend-2024-q1-db-1 psql -U admin -d rinha"
   },
   "dependencies": {
