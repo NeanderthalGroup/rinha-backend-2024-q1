@@ -36,8 +36,9 @@ CREATE OR REPLACE FUNCTION gerencia_transacao(
     p_tipo CHAR(1),
     p_descricao VARCHAR(10)
 )
-RETURNS VOID AS $$
+RETURNS JSON AS $$
 DECLARE
+    transaction_info JSON;
     v_saldo_atual INTEGER;
     v_saldo_inicial INTEGER;
 BEGIN
@@ -69,5 +70,13 @@ BEGIN
     ELSE
         UPDATE saldo SET valor = v_saldo_atual WHERE cliente_id = p_cliente_id;
     END IF;
+
+    transaction_info := json_build_object(
+        'client_id', p_cliente_id,
+        'current_balance', v_saldo_atual,
+        'type', p_tipo
+    );
+
+    RETURN transaction_info;
 END;
 $$ LANGUAGE plpgsql;
